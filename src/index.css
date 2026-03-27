@@ -14,17 +14,21 @@
 
   body {
     font-family: var(--font-sans);
-    @apply antialiased bg-white text-gray-900;
+    @apply antialiased bg-white text-gray-900 overflow-x-hidden;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/60 backdrop-blur-xl border border-white/30 shadow-2xl;
+  }
+
+  .glass-light {
+    @apply bg-white/30 backdrop-blur-lg border border-white/20 shadow-xl;
   }
 
   .glass-dark {
-    @apply bg-gray-900/80 backdrop-blur-md border border-gray-700/50 shadow-lg;
+    @apply bg-gray-900/60 backdrop-blur-xl border border-gray-700/40 shadow-2xl;
   }
 
   .text-gradient {

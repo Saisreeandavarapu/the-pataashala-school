@@ -90,21 +90,28 @@ const HeroSection = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
 
           {/* Content */}
-          <div className="absolute inset-0 flex items-center justify-start md:justify-center px-6 lg:px-24 container mx-auto ">
-            <div className="max-w-3xl text-left md:text-center  md:mt-0">
+          <div className="absolute inset-0 flex items-center justify-center px-6 lg:px-24 container mx-auto ">
+            <div className="max-w-4xl text-center md:mt-0">
+
+
               <motion.h1
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight drop-shadow-xl"
+                className="text-5xl md:text-8xl font-extrabold text-white leading-[1.1] mb-8 tracking-tighter drop-shadow-2xl"
               >
-                {slides[currentSlide].title}
+                {slides[currentSlide].title.split(' ').map((word, i) => (
+                  <span key={i} className={word === 'Paatashala' ? 'text-secondary' : ''}>
+                    {word}{' '}
+                  </span>
+                ))}
               </motion.h1>
+
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-lg md:text-2xl text-gray-200 mb-10 font-medium drop-shadow-md"
+                className="text-xl md:text-3xl text-gray-200 mb-12 font-medium drop-shadow-lg max-w-3xl mx-auto leading-relaxed"
               >
                 {slides[currentSlide].subtitle}
               </motion.p>
@@ -113,12 +120,12 @@ const HeroSection = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 md:justify-center"
+                className="flex flex-col sm:flex-row gap-6 justify-center"
               >
-                <a href="#about" className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-primary/30 flex items-center justify-center gap-2 hover:-translate-y-1 transition-all">
-                  Discover More <ArrowRight size={20} />
+                <a href="#about" className="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-primary/40 flex items-center justify-center gap-2 hover:-translate-y-1 transition-all">
+                  Discover More <ArrowRight size={22} />
                 </a>
-                <a href="#contact" className="glass hover:bg-white/90 hover:text-gray-900 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl flex items-center justify-center gap-2 hover:-translate-y-1 transition-all">
+                <a href="#contact" className="glass hover:bg-white/90 hover:text-gray-900 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl flex items-center justify-center gap-2 hover:-translate-y-1 transition-all border border-white/30">
                   Enroll Your Child
                 </a>
               </motion.div>

@@ -63,7 +63,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-24 bg-white overflow-hidden relative">
+    <section id="testimonials" className="py-24 bg-white overflow-hidden relative">
       <div className="container mx-auto px-6 lg:px-12 mb-12 flex justify-between items-end">
         <div className="max-w-2xl">
           <motion.div 

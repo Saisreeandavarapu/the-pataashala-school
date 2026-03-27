@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Globe, GraduationCap } from 'lucide-react';
 import FloatingBubbles from './FloatingBubbles';
 
@@ -36,18 +35,19 @@ const Footer = () => {
           <h3 className="text-lg font-bold text-white mb-6">Quick Links</h3>
           <ul className="space-y-3">
             {[
-              { name: 'Home', to: '/' },
-              { name: 'About Us', to: '/about' },
-              { name: 'Testimonials', to: '/testimonials' },
-              { name: 'Why Choose Us', to: '/why-us' },
-              { name: 'Gallery', to: '/gallery' },
-              { name: 'Contact Us', to: '/contact' }
+              { name: 'Home', to: '#home' },
+              { name: 'About Us', to: '#about' },
+              { name: 'Programs', to: '#programs' },
+              { name: 'Testimonials', to: '#testimonials' },
+              { name: 'Why Choose Us', to: '#why-us' },
+              { name: 'Gallery', to: '#gallery' },
+              { name: 'Contact Us', to: '#contact' }
             ].map((link) => (
               <li key={link.name}>
-                <Link to={link.to} className="text-sm hover:text-secondary transition-colors flex items-center gap-2">
+                <a href={link.to} className="text-sm hover:text-secondary transition-colors flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
                   {link.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
@@ -78,9 +78,9 @@ const Footer = () => {
           <p className="text-sm text-gray-400 mb-4">
             Admissions are open for the current academic year. Give your child the best start!
           </p>
-          <Link to="/contact" className="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg transition-colors text-sm shadow-lg shadow-primary/20">
+          <a href="#contact" className="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg transition-colors text-sm shadow-lg shadow-primary/20">
             Apply Now
-          </Link>
+          </a>
         </div>
 
       </div>

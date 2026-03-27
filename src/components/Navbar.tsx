@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,15 +14,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const { pathname } = useLocation();
+
 
   const navLinks = [
-    { name: 'Home', to: '/' },
-    { name: 'About Us', to: '/about' },
-    { name: 'Testimonials', to: '/testimonials' },
-    { name: 'Why Us', to: '/why-us' },
-    { name: 'Gallery', to: '/gallery' },
-    { name: 'Contact', to: '/contact' },
+    { name: 'Home', to: '#home' },
+    { name: 'About Us', to: '#about' },
+    { name: 'Programs', to: '#programs' },
+    { name: 'Why Us', to: '#why-us' },
+    { name: 'Testimonials', to: '#testimonials' },
+    { name: 'Gallery', to: '#gallery' },
+    { name: 'Contact', to: '#contact' },
   ];
 
   return (
@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center">
 
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 z-50">
+        <a href="#home" className="flex items-center gap-2 z-50">
           <div className="bg-primary text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-lg shadow-primary/30">
             <GraduationCap size={22} className="sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
           </div>
@@ -42,30 +42,28 @@ const Navbar = () => {
             }`}>
             The <span className="text-primary">Paatashala</span>
           </span>
-        </Link>
+        </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.name}
-              to={link.to}
-              className={`text-sm lg:text-base font-semibold transition-colors hover:text-secondary ${pathname === link.to
-                ? 'text-primary'
-                : isScrolled
+              href={link.to}
+              className={`text-sm lg:text-base font-semibold transition-colors hover:text-secondary ${isScrolled
                   ? 'text-gray-700'
                   : 'text-gray-800'
                 }`}
             >
               {link.name}
-            </Link>
+            </a>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="#contact"
             className="bg-secondary text-center text-white px-4 lg:px-5 py-2 lg:py-2.5 rounded-full text-sm lg:text-base font-bold shadow-lg shadow-secondary/30 hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
           >
             Admissions Open
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -86,23 +84,22 @@ const Navbar = () => {
               className="absolute top-full left-0 right-0 bg-white shadow-2xl border-t border-gray-100 px-4 py-5 flex flex-col gap-3 md:hidden"
             >
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.name}
-                  to={link.to}
+                  href={link.to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-base sm:text-lg font-medium border-b border-gray-100 pb-2 hover:text-primary transition-colors ${pathname === link.to ? 'text-primary' : 'text-gray-800'
-                    }`}
+                  className="text-base sm:text-lg font-medium border-b border-gray-100 pb-2 hover:text-primary transition-colors text-gray-800"
                 >
                   {link.name}
-                </Link>
+                </a>
               ))}
-              <Link
-                to="/contact"
+              <a
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-primary text-white text-center px-5 py-3 rounded-lg sm:rounded-xl font-bold mt-2 text-sm sm:text-base"
               >
                 Enroll Now
-              </Link>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

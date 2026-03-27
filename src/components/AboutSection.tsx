@@ -105,14 +105,20 @@ const AboutSection = () => {
               />
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl z-20 glass flex items-center gap-4 animate-bounce hover:animate-none">
-                <div className="bg-green-100 text-green-600 p-3 rounded-full">
+              <motion.div 
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="absolute -bottom-6 -left-6 bg-white/70 p-5 rounded-2xl shadow-xl z-20 backdrop-blur-md border border-white/40 flex items-center gap-4 animate-bounce hover:animate-none group/badge"
+              >
+                <div className="bg-green-100/80 text-green-600 p-3 rounded-full group-hover/badge:scale-110 transition-transform">
                   <BookOpen size={24} />
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900 leading-tight">100% Zero<br/>Screen Time</h4>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
           
