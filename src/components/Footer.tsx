@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <div className="bg-white text-primary p-2 rounded-xl">
-              <img src="public/icon.png" alt="Logo" className="w-10 h-10 rounded-md" />
+              <img src="/icon.png" alt="Logo" className="w-10 h-10 rounded-md" />
             </div>
             <span className="text-2xl font-bold text-white tracking-tight">
               The Paatashala
