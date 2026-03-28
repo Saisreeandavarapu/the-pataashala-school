@@ -47,7 +47,7 @@ const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState<any>(null);
 
   return (
-    <section className="py-20 bg-sky-50">
+    <section className="py-20 bg-sky-50" id='gallery'>
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Heading */}
