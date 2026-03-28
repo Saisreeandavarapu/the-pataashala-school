@@ -6,12 +6,12 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 py-16 px-6 lg:px-12 border-t-4 border-primary relative overflow-hidden">
       <FloatingBubbles />
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-        
+
         {/* Brand */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <div className="bg-white text-primary p-2 rounded-xl">
-              <GraduationCap size={24} />
+              <img src="src/assets/icon.png" alt="Logo" className="w-10 h-10 rounded-md" />
             </div>
             <span className="text-2xl font-bold text-white tracking-tight">
               The Paatashala

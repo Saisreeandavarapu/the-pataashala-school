@@ -36,7 +36,7 @@ const Navbar = () => {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 z-50">
           <div className="bg-primary text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-lg shadow-primary/30">
-            <GraduationCap size={22} className="sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
+            <img src="src/assets/icon.png" alt="Logo" className="w-10 h-10 rounded-md" />
           </div>
           <span className={`text-lg sm:text-xl lg:text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900' : 'text-gray-900 drop-shadow-sm'
             }`}>
@@ -51,8 +51,8 @@ const Navbar = () => {
               key={link.name}
               href={link.to}
               className={`text-sm lg:text-base font-semibold transition-colors hover:text-secondary ${isScrolled
-                  ? 'text-gray-700'
-                  : 'text-gray-800'
+                ? 'text-gray-700'
+                : 'text-gray-800'
                 }`}
             >
               {link.name}

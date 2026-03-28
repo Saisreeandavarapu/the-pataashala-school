@@ -10,150 +10,130 @@ import img5 from '../assets/image copy 6.png';
 import img6 from '../assets/image copy 7.png';
 import img7 from '../assets/image copy 8.png';
 import img8 from '../assets/image copy 9.png';
-import img9 from '../assets/image copy 10.png';
 
+// ✅ Cloud shape variations (clean + consistent)
+const getCloudShape = (type: string) => {
+  switch (type) {
+    case 'cloud1':
+      return 'ellipse(55% 45% at 50% 50%)';
+
+    case 'cloud2':
+      return 'ellipse(70% 45% at 50% 55%)';
+
+    case 'cloud3':
+      return 'ellipse(50% 60% at 50% 45%)';
+
+    case 'cloud4':
+      return 'ellipse(60% 40% at 50% 60%)';
+
+    default:
+      return 'ellipse(55% 45% at 50% 50%)';
+  }
+};
+
+// ✅ Assign shapes (ONLY 4 types — don't overdo it)
 const galleryImages = [
-  { id: 1, src: img1, shape: 'rounded-[40%_60%_70%_30%/40%_50%_60%_50%]', delay: 0.1 },
-  { id: 2, src: img2, shape: 'rounded-[60%_40%_30%_70%/60%_30%_70%_40%]', delay: 0.2 },
-  { id: 3, src: img3, shape: 'rounded-[50%_50%_20%_80%/25%_80%_20%_75%]', delay: 0.3 },
-  { id: 4, src: img4, shape: 'rounded-[30%_70%_70%_30%/30%_30%_70%_70%]', delay: 0.4 },
-  { id: 5, src: img5, shape: 'rounded-[80%_20%_50%_50%/50%_50%_50%_50%]', delay: 0.5 },
-  { id: 6, src: img6, shape: 'rounded-[40%_60%_70%_30%/80%_20%_80%_20%]', delay: 0.6 },
-  { id: 7, src: img7, shape: 'rounded-[30%_70%_50%_50%/50%_30%_70%_50%]', delay: 0.1 },
-  { id: 8, src: img8, shape: 'rounded-[70%_30%_50%_50%/50%_70%_30%_50%]', delay: 0.2 },
-  { id: 9, src: img9, shape: 'rounded-[50%_50%_70%_30%/30%_70%_50%_50%]', delay: 0.3 },
+  { id: 1, src: img1, shape: 'cloud1' },
+  { id: 2, src: img2, shape: 'cloud2' },
+  { id: 3, src: img3, shape: 'cloud3' },
+  { id: 4, src: img4, shape: 'cloud4' },
+  { id: 5, src: img5, shape: 'cloud1' },
+  { id: 6, src: img6, shape: 'cloud2' },
+  { id: 7, src: img7, shape: 'cloud3' },
+  { id: 8, src: img8, shape: 'cloud4' },
 ];
 
 const GallerySection = () => {
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any>(null);
 
   return (
-    <section id="gallery" className="py-24 bg-gray-50 relative overflow-hidden">
-      {/* Decorative Blob */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl z-0" />
+    <section className="py-20 bg-sky-50">
+      <div className="max-w-6xl mx-auto px-6">
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6"
-          >
-            A Glimpse of <span className="text-secondary">Joy</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-gray-600"
-          >
-            Explore our vibrant campus, interactive classrooms, and the joyful moments of our little learners.
-          </motion.p>
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
+            Cloud <span className="text-orange-500">Gallery</span>
+          </h2>
+          <p className="text-gray-600">
+            Soft moments captured in a playful cloud style.
+          </p>
         </div>
 
-        {/* Mobile horizontal scroll */}
-        <div className="sm:hidden flex overflow-x-auto gap-4 p-4 no-scrollbar">
-          {galleryImages.map((img) => (
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+
+          {galleryImages.map((img, index) => (
             <motion.div
               key={img.id}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: img.delay }}
-              whileHover={{ scale: 1.05 }}
+              transition={{ delay: index * 0.05 }}
+              viewport={{ once: true }}
               onClick={() => setSelectedImage(img)}
-              className="relative flex-shrink-0 w-72 h-72 group cursor-pointer overflow-hidden rounded-2xl shadow-xl border-4 border-white"
+              className="relative group cursor-pointer aspect-square"
             >
-              <img
-                src={img.src}
-                alt="Gallery Visual"
-                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-              />
-              <div
-                className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm"
-              >
-                <div className="bg-white/20 p-4 rounded-full border border-white/50">
-                  <span className="text-white font-bold text-lg">View Full</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Larger screens grid */}
-        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {galleryImages.map((img) => (
-            <motion.div
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: img.delay }}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setSelectedImage(img)}
-              className="relative group aspect-square flex items-center justify-center cursor-pointer overflow-hidden rounded-3xl"
-            >
+              {/* Glow */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary opacity-20 group-hover:opacity-40 transition-opacity duration-300 ${img.shape} blur-2xl`}
+                style={{ clipPath: getCloudShape(img.shape) }}
+                className="absolute inset-0 bg-white/70 blur-2xl scale-110"
               />
+
+              {/* Image */}
               <img
                 src={img.src}
-                alt="Gallery Visual"
-                className={`w-full h-full object-cover shadow-2xl border-4 border-white ${img.shape} transition-all duration-500 group-hover:rotate-2 group-hover:scale-105`}
+                alt="gallery"
+                style={{ clipPath: getCloudShape(img.shape) }}
+                className="relative w-full h-full object-cover transition duration-500 group-hover:scale-110 shadow-lg"
               />
+
+              {/* Overlay (FIXED) */}
               <div
-                className={`absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-all duration-300 ${img.shape} flex items-center justify-center backdrop-blur-sm border-2 border-white/50 scale-90 group-hover:scale-100`}
+                style={{ clipPath: getCloudShape(img.shape) }}
+                className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition"
               >
-                <motion.div 
-                   whileHover={{ scale: 1.1 }}
-                   className="bg-white text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg"
-                >
-                  View
-                </motion.div>
+                <span className="text-white font-semibold">View</span>
               </div>
+
             </motion.div>
           ))}
+
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/95 backdrop-blur-md p-4 md:p-12 cursor-zoom-out"
           >
-            <motion.button
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="absolute top-6 right-6 text-white bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
+            {/* Close button */}
+            <button
               onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 text-white"
             >
               <X size={32} />
-            </motion.button>
+            </button>
 
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative max-w-5xl w-full h-full flex items-center justify-center"
+            {/* Image preview */}
+            <motion.img
+              src={selectedImage.src}
+              alt="preview"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              className="max-w-full max-h-full object-contain rounded-xl"
               onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedImage.src}
-                alt="Full View"
-                className="max-w-full max-h-full object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border-4 border-white/10"
-              />
-            </motion.div>
+            />
           </motion.div>
         )}
       </AnimatePresence>
+
     </section>
   );
 };

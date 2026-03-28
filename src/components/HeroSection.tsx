@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 import img1 from '../assets/image copy 13.png';
@@ -30,16 +30,15 @@ const slides = [
   {
     id: 4,
     image: img4,
-    title: 'Welcome to The Paatashala',
-    subtitle: 'Where Early Education Meets Joyful Discovery',
+    title: 'Creative Learning',
+    subtitle: 'Encouraging imagination through play and exploration',
   },
   {
     id: 5,
     image: img5,
-    title: 'Holistic Development',
-    subtitle: 'Nurturing minds, building healthy habits, and igniting curiosity',
+    title: 'Future Ready Kids',
+    subtitle: 'Building confidence, communication, and life skills',
   },
-
 ];
 
 const HeroSection = () => {
@@ -48,117 +47,124 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000); // Changed to 4000ms for faster sliding but still readable
+    }, 4000);
+
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden bg-gray-900 group">
+    <section className="relative w-full h-screen overflow-hidden group">
 
-      {/* Admission Banner */}
-      <div className="absolute top-24 left-0 right-0 z-30 flex justify-center px-4 w-full">
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, type: 'spring' }}
-          className="bg-secondary/90 backdrop-blur-md px-6 py-2 rounded-full border border-secondary/50 shadow-xl shadow-secondary/20 flex items-center gap-2 cursor-pointer hover:bg-secondary transition-colors"
-        >
+      {/* 🔥 Admission Banner */}
+      <div className="absolute top-24 left-0 right-0 z-30 flex justify-center px-4">
+        <div className="bg-orange-500/90 backdrop-blur-md px-6 py-2 rounded-full shadow-lg flex items-center gap-2">
           <Sparkles size={16} className="text-white animate-pulse" />
-          <span className="text-white font-bold text-xs tracking-wide">ADMISSIONS OPEN FOR 2026</span>
-        </motion.div>
+          <span className="text-white font-bold text-xs tracking-wide">
+            ADMISSIONS OPEN FOR 2026
+          </span>
+        </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0"
-        >
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
-          />
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
+      {/* 🔥 FIXED SLIDER (NO WHITE FLASH) */}
+      <div className="absolute inset-0">
 
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center justify-center px-6 lg:px-24 container mx-auto ">
-            <div className="max-w-4xl text-center md:mt-0">
+        {slides.map((slide, index) => (
+          <motion.div
+            key={slide.id}
+            animate={{ opacity: index === currentSlide ? 1 : 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0"
+          >
 
+            {/* Image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center brightness-110 contrast-110 saturate-110"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            />
 
-              <motion.h1
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-5xl md:text-8xl font-extrabold text-white leading-[1.1] mb-8 tracking-tighter drop-shadow-2xl"
-              >
-                {slides[currentSlide].title.split(' ').map((word, i) => (
-                  <span key={i} className={word === 'Paatashala' ? 'text-secondary' : ''}>
-                    {word}{' '}
-                  </span>
-                ))}
-              </motion.h1>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-xl md:text-3xl text-gray-200 mb-12 font-medium drop-shadow-lg max-w-3xl mx-auto leading-relaxed"
-              >
-                {slides[currentSlide].subtitle}
-              </motion.p>
+            {/* Color Glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-orange-400/20 mix-blend-overlay" />
 
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-6 justify-center"
-              >
-                <a href="#about" className="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-primary/40 flex items-center justify-center gap-2 hover:-translate-y-1 transition-all">
-                  Discover More <ArrowRight size={22} />
-                </a>
-                <a href="#contact" className="glass hover:bg-white/90 hover:text-gray-900 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl flex items-center justify-center gap-2 hover:-translate-y-1 transition-all border border-white/30">
-                  Enroll Your Child
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            {/* Content (ONLY ACTIVE SLIDE) */}
+            {index === currentSlide && (
+              <div className="absolute inset-0 flex items-center justify-center px-6 lg:px-20">
+                <div className="max-w-4xl text-center text-white">
 
-      {/* Slider Controls */}
+                  <h1 className="text-4xl md:text-7xl font-extrabold mb-6">
+                    {slide.title}
+                  </h1>
+
+                  <p className="text-lg md:text-2xl mb-10">
+                    {slide.subtitle}
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+
+                    {/* Button 1 */}
+                    <a
+                      href="#about"
+                      className="bg-purple-600 hover:bg-purple-700 
+    px-5 py-3 sm:px-8 sm:py-4 
+    text-sm sm:text-base 
+    rounded-lg sm:rounded-xl 
+    font-semibold 
+    flex items-center justify-center gap-2 
+    transition"
+                    >
+                      Discover More <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                    </a>
+
+                    {/* Button 2 */}
+                    <a
+                      href="#contact"
+                      className="bg-white/20 backdrop-blur 
+    px-5 py-3 sm:px-8 sm:py-4 
+    text-sm sm:text-base 
+    rounded-lg sm:rounded-xl 
+    font-semibold 
+    border border-white/30 
+    hover:bg-white hover:text-black 
+    transition"
+                    >
+                      Enroll Your Child
+                    </a>
+
+                  </div>
+
+                </div>
+              </div>
+            )}
+
+          </motion.div>
+        ))}
+
+      </div>
+
+      {/* Controls */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white opacity-0 group-hover:opacity-100 hover:bg-primary transition-all duration-300 z-40 hidden md:flex"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hidden md:flex items-center justify-center"
       >
-        <ChevronLeft size={24} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white opacity-0 group-hover:opacity-100 hover:bg-primary transition-all duration-300 z-40 hidden md:flex"
-      >
-        <ChevronRight size={24} />
+        <ChevronLeft size={22} />
       </button>
 
-      {/* Scroll indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-70 z-30"
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hidden md:flex items-center justify-center"
       >
-        <span className="text-white text-xs font-semibold tracking-widest mb-2 uppercase">Scroll</span>
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-        </div>
-      </motion.div>
+        <ChevronRight size={22} />
+      </button>
+
     </section>
   );
 };
