@@ -10,11 +10,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply overflow-x-hidden;
   }
 
   body {
     font-family: var(--font-sans);
-    @apply antialiased bg-white text-gray-900 overflow-x-hidden;
+    @apply antialiased bg-white text-gray-900 overflow-x-hidden w-full;
   }
 }
 

@@ -31,14 +31,14 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-2 sm:py-3 shadow-md' : 'bg-transparent py-3 sm:py-5'
         }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex justify-between items-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
 
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 z-50">
+        <a href="#home" className="flex items-center gap-2 z-50 flex-shrink-0">
           <div className="bg-primary text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-lg shadow-primary/30">
-            <img src="/icon.png" alt="Logo" className="w-10 h-10 rounded-md" />
+            <img src="/icon.png" alt="Logo" className="w-8 h-8 sm:w-10 sm:h-10 rounded-md" />
           </div>
-          <span className={`text-lg sm:text-xl lg:text-2xl font-bold tracking-tight ${isScrolled ? 'text-gray-900' : 'text-gray-900 drop-shadow-sm'
+          <span className={`text-base sm:text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap ${isScrolled ? 'text-gray-900' : 'text-gray-900 drop-shadow-sm'
             }`}>
             The <span className="text-primary">Paatashala</span>
           </span>

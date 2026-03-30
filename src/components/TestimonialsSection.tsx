@@ -108,7 +108,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial) => (
             <div 
               key={testimonial.id}
-              className="min-w-[320px] md:min-w-[420px] snap-center bg-gray-50 rounded-[2rem] p-8 border border-gray-100 hover:shadow-xl transition-shadow flex-shrink-0 relative"
+              className="min-w-[280px] sm:min-w-[320px] md:min-w-[420px] snap-center bg-gray-50 rounded-[2rem] p-8 border border-gray-100 hover:shadow-xl transition-shadow flex-shrink-0 relative"
             >
               <div className="absolute top-8 right-8 text-secondary opacity-20">
                 <Quote size={64} />

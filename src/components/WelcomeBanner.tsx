@@ -36,7 +36,7 @@ const WelcomeBanner = () => {
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", duration: 0.6 }}
-            className="bg-white rounded-[2rem] shadow-2xl w-full max-w-4xl overflow-hidden relative flex flex-col md:flex-row"
+            className="bg-white rounded-[2rem] shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto md:overflow-hidden relative flex flex-col md:flex-row"
           >
             {/* Close Button */}
             <button

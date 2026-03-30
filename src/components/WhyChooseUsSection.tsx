@@ -72,13 +72,13 @@ const WhyChooseUsSection = () => {
           </motion.p>
         </div>
 
-        <div className="overflow-x-auto lg:overflow-hidden md:overflow-visible px-4 md:px-0">
+        <div className="overflow-x-auto md:overflow-visible px-4 md:px-0 pb-6 hide-scrollbar">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="inline-flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 min-w-max"
+            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-max md:w-full"
           >
             {features.map((feature, idx) => (
               <motion.div
